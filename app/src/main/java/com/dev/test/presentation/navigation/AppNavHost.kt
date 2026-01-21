@@ -18,7 +18,7 @@ fun AppNavHost(
     navHostController: NavHostController,
     modifier: Modifier
 ) {
-    NavHost(navController = navHostController, startDestination = AppRoute.GoalSavingsDashboardScreen.route, modifier = modifier) {
+    NavHost(navController = navHostController, startDestination = AppRoute.StartSavingScreen.route, modifier = modifier) {
 
 
         composable(AppRoute.StartSavingScreen.route) {
