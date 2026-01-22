@@ -1,4 +1,4 @@
-package com.dev.test.presentation.screens.mygoals
+package com.dev.test.presentation.screens.dashboard
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

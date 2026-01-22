@@ -36,7 +36,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.dev.test.R
 import com.dev.test.presentation.navigation.AppRoute
-import com.dev.test.presentation.screens.dashboard.GoalSavingsViewModel
+import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
 
 /**
  * Goal Savings Dashboard Screen
@@ -444,7 +444,6 @@ private fun GoalsListContent(
     }
 }
 
-// Add this custom indicator if you don't have it
 @Composable
 fun HorizontalPagerIndicator(
     pagerState: androidx.compose.foundation.pager.PagerState,
@@ -655,7 +654,7 @@ private fun GoalCard(
     }
 }
 
-// transactions sections separate
+// transactions are sections separate
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

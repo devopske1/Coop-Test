@@ -10,9 +10,9 @@ import com.coop.feature_goals.presentation.GoalSavingsDashboardScreen
 import com.dev.test.presentation.navigation.AppRoute
 import com.dev.test.presentation.screens.creategoals.CreateGoalScreen
 import com.dev.test.presentation.screens.creategoals.CreateGoalViewModel
-import com.dev.test.presentation.screens.deposit.DepositScreen2
-import com.dev.test.presentation.screens.mygoals.StartSavingScreen
-import com.dev.test.presentation.screens.withdraw.WithdrawScreen2
+import com.dev.test.presentation.screens.dashboard.StartSavingScreen
+import com.dev.test.presentation.screens.deposit.DepositScreen
+import com.dev.test.presentation.screens.withdraw.WithdrawScreen
 
 
 @Composable
@@ -39,11 +39,11 @@ fun AppNavHost(
             CreateGoalScreen(navHostController, viewModel)
         }
         composable(AppRoute.DepositScreen.route) {
-            DepositScreen2(navHostController)
+            DepositScreen(navHostController)
 
         }
         composable(AppRoute.WithdrawScreen.route) {
-            WithdrawScreen2 (navHostController)
+            WithdrawScreen (navHostController)
         }
 
 

@@ -1,4 +1,4 @@
-package com.dev.test.presentation.screens.utils
+package com.dev.test.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

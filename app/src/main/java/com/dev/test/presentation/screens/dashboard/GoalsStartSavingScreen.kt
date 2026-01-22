@@ -1,4 +1,4 @@
-package com.dev.test.presentation.screens.mygoals
+package com.dev.test.presentation.screens.dashboard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -37,7 +37,7 @@ import com.coop.feature_goals.presentation.GoalSavingsSampleData
 import com.coop.feature_goals.presentation.GoalSavingsState
 import com.dev.test.R
 import com.dev.test.presentation.navigation.AppRoute
-import com.dev.test.presentation.screens.dashboard.GoalSavingsViewModel
+import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
 
 @Composable
  fun StartSavingScreen(

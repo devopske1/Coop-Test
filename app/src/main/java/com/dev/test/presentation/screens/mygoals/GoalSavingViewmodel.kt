@@ -1,4 +1,4 @@
-package com.dev.test.presentation.screens.dashboard
+package com.dev.test.presentation.screens.mygoals
 
 
 import androidx.lifecycle.ViewModel
