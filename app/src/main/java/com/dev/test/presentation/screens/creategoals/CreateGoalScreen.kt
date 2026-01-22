@@ -42,10 +42,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.dev.test.presentation.components.SuccessDialog
 import com.dev.test.presentation.dashboard.CreateGoalIntent
 import com.dev.test.presentation.dashboard.CreateGoalNavigation
 import com.dev.test.presentation.dashboard.GoalCategory
-import com.dev.test.presentation.components.SuccessDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -106,7 +106,6 @@ fun CreateGoalScreen(
                 .verticalScroll(rememberScrollState())
                 .background(Color(0xFFF5F5F5))
         ) {
-            // Form Section
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -114,7 +113,6 @@ fun CreateGoalScreen(
                     .padding(24.dp)
             ) {
 
-                // Goal Name - Use ViewModel state
                 Text(
                     "Goal Name",
                     fontSize = 12.sp,
@@ -128,7 +126,6 @@ fun CreateGoalScreen(
                     singleLine = true
                 )
 
-                // Category - Use ViewModel state
                 Text(
                     "Goal Category",
                     fontSize = 12.sp,
@@ -171,7 +168,6 @@ fun CreateGoalScreen(
                     }
                 }
 
-                // Target Amount - Use ViewModel state
                 Text(
                     "Target Amount",
                     fontSize = 12.sp,
@@ -192,7 +188,6 @@ fun CreateGoalScreen(
                     singleLine = true
                 )
 
-                // Target Date - Use ViewModel state
                 Text(
                     "Savings Target Date",
                     fontSize = 12.sp,
@@ -216,7 +211,6 @@ fun CreateGoalScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // Create Goal Button
             Button(
                 onClick = {
                     viewModel.processIntent(CreateGoalIntent.OnCreateGoalClicked)
@@ -247,15 +241,12 @@ fun CreateGoalScreen(
         }
     }
 
-    // Show error Snackbar
     state.error?.let { errorMsg ->
         LaunchedEffect(errorMsg) {
-            // Show snackbar or toast
             viewModel.processIntent(CreateGoalIntent.OnErrorDismissed)
         }
     }
 
-    // Show success dialog
 
     if (state.isSuccess) {
         SuccessDialog(

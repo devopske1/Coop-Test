@@ -1,4 +1,4 @@
-package com.coop.feature_goals.presentation.deposit
+package com.dev.test.presentation.screens.deposit
 
 
 data class DepositState(

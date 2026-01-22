@@ -1,4 +1,4 @@
-package com.coop.feature_goals.presentation
+package com.dev.test.presentation.screens.mygoals
 
 import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color

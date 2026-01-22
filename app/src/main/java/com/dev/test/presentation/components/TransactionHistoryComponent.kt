@@ -30,7 +30,6 @@ fun TransactionHistorySection(
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        // Header
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -54,7 +53,6 @@ fun TransactionHistorySection(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Filter Tabs
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -103,7 +101,6 @@ private fun TransactionItem(transaction: GoalTransaction) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // Icon
             Box(
                 modifier = Modifier
                     .size(40.dp)
@@ -133,7 +130,6 @@ private fun TransactionItem(transaction: GoalTransaction) {
                 )
             }
 
-            // Transaction details
             Column {
                 Text(
                     text = transaction.type.name.lowercase().replaceFirstChar { it.uppercase() },
@@ -149,7 +145,6 @@ private fun TransactionItem(transaction: GoalTransaction) {
             }
         }
 
-        // Amount and date
         Column(
             horizontalAlignment = Alignment.End
         ) {

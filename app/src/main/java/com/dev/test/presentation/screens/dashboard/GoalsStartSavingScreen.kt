@@ -92,7 +92,6 @@ import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
                     modifier = Modifier.padding(top = 16.dp, bottom = 24.dp)
                 )
 
-                // Goal Savings Card
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -139,7 +138,6 @@ import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // CORRECTION 1: Learn About Savings - Horizontal Scroll with 2 cards
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.fillMaxWidth()

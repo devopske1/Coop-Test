@@ -3,11 +3,6 @@ package com.dev.test.presentation.screens.mygoals
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.coop.feature_goals.presentation.GoalSavingsIntent
-import com.coop.feature_goals.presentation.GoalSavingsNavigation
-import com.coop.feature_goals.presentation.GoalSavingsSampleData
-import com.coop.feature_goals.presentation.GoalSavingsState
-import com.coop.feature_goals.presentation.TransactionFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -60,10 +55,8 @@ class GoalSavingsViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, error = null) }
 
-            // Simulation - replace with actual implementation
             delay(2000L)
 
-            // Simulate loading goals - you can change this to test different states
             val goals = GoalSavingsSampleData.sampleGoals
             val selectedGoal = goals.firstOrNull()
             val transactions = if (selectedGoal != null) {
@@ -192,30 +185,4 @@ class GoalSavingsViewModel @Inject constructor(
     }
 }
 
-/**
- * For integration:
- * Use case for getting goals
- */
-/*
-class GetGoalsUseCase @Inject constructor(
-    private val repository: GoalSavingsRepository
-) {
-    operator fun invoke(): Flow<Resource<List<SavingsGoal>>> {
-        return repository.getGoals()
-    }
-}
-*/
 
-/**
- * Repository interface
- */
-/*
-interface GoalSavingsRepository {
-    fun getGoals(): Flow<Resource<List<SavingsGoal>>>
-    suspend fun createGoal(goal: SavingsGoal): Resource<Unit>
-    suspend fun depositToGoal(goalId: String, amount: Double): Resource<Unit>
-    suspend fun withdrawFromGoal(goalId: String, amount: Double): Resource<Unit>
-    suspend fun deleteGoal(goalId: String): Resource<Unit>
-    fun getTransactions(goalId: String): Flow<Resource<List<GoalTransaction>>>
-}
-*/

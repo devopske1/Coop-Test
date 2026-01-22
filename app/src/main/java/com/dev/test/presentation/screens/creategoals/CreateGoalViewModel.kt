@@ -64,10 +64,8 @@ class CreateGoalViewModel @Inject constructor(
     }
 
     private fun handleTargetAmountChanged(amount: String) {
-        // Filter to allow only numbers and one decimal point
         val filtered = amount.filter { it.isDigit() || it == '.' }
             .let { str ->
-                // Ensure only one decimal point
                 val parts = str.split(".")
                 if (parts.size > 2) {
                     parts[0] + "." + parts.drop(1).joinToString("")
@@ -96,34 +94,6 @@ class CreateGoalViewModel @Inject constructor(
         _state.update { it.copy(showDatePicker = !it.showDatePicker) }
     }
 
-//    private fun createGoal() {
-//        val currentState = _state.value
-//
-//        // Validate form
-//        if (!currentState.isValid) {
-//            _state.update { it.copy(error = "Please fill in all fields correctly") }
-//            return
-//        }
-//
-//        viewModelScope.launch {
-//            _state.update { it.copy(isLoading = true, error = null) }
-//
-//            val request = CreateGoalRequest(
-//                name = currentState.goalName.trim(),
-//                category = currentState.selectedCategory!!,
-//                targetAmount = currentState.targetAmount.toDouble(),
-//                targetDate = currentState.targetDate
-//            )
-//            delay(3000L)
-//            _state.update {
-//                it.copy(
-//                    isLoading = false,
-//                    isSuccess = true,
-//                    createdGoalName = currentState.goalName
-//                )
-//            }
-//
-//        }}
 
 
      fun createGoal() {
@@ -137,7 +107,6 @@ class CreateGoalViewModel @Inject constructor(
         IsValid: ${currentState.isValid}
     """.trimIndent())
 
-        // Validate form
         if (!currentState.isValid) {
             _state.update { it.copy(error = "Please fill in all fields correctly") }
             return
@@ -148,7 +117,6 @@ class CreateGoalViewModel @Inject constructor(
             _state.update { it.copy(isLoading = true, error = null) }
 
             try {
-                // Create Room entity
                 val goalEntity = GoalEntity(
                     name = currentState.goalName.trim(),
                     category = currentState.selectedCategory!!,
@@ -156,13 +124,7 @@ class CreateGoalViewModel @Inject constructor(
                     targetDate = currentState.targetDate
                 )
 
-                // Save in Room via repository
                 repository.insertGoal(goalEntity)
-
-                // Simulate delay if you want (optional)
-                // delay(1000L)
-
-                // Update state on success
                 _state.update {
                     it.copy(
                         isLoading = false,

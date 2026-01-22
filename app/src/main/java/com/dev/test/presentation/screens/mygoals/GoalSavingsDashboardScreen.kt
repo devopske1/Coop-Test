@@ -1,4 +1,4 @@
-package com.coop.feature_goals.presentation
+package com.dev.test.presentation.screens.mygoals
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.coop.feature_goals.presentation.GoalSavingsIntent
 import com.dev.test.R
 import com.dev.test.presentation.navigation.AppRoute
 import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel

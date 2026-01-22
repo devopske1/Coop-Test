@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.dev.test.presentation.dashboard.AppNavHost
+import com.dev.test.presentation.navigation.AppNavHost
 import com.dev.test.presentation.theme.TestTheme
 import dagger.hilt.android.AndroidEntryPoint
 

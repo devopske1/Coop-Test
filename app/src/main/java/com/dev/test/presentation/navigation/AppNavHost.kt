@@ -1,4 +1,4 @@
-package com.dev.test.presentation.dashboard
+package com.dev.test.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -7,7 +7,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.coop.feature_goals.presentation.GoalSavingsDashboardScreen
-import com.dev.test.presentation.navigation.AppRoute
 import com.dev.test.presentation.screens.creategoals.CreateGoalScreen
 import com.dev.test.presentation.screens.creategoals.CreateGoalViewModel
 import com.dev.test.presentation.screens.dashboard.StartSavingScreen
