@@ -23,7 +23,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -100,40 +102,52 @@ import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
                         .clickable(onClick = onViewAllGoals),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = Color(0xFF2E7D32)
+                        containerColor = Color.Transparent // make card background transparent
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(20.dp)
+                            .clip(RoundedCornerShape(16.dp)) // clip Box to card shape
                     ) {
-                        Column(
-                            modifier = Modifier.align(Alignment.CenterStart)
-                        ) {
-                            Text(
-                                text = "Goal Savings",
-                                color = Color.White,
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = "Turn your goals into\nsavings!",
-                                color = Color.White.copy(alpha = 0.9f),
-                                fontSize = 14.sp,
-                                lineHeight = 20.sp
+                        // Background Image
+                        Image(
+                            painter = painterResource(R.drawable.bg), // replace with your image
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+
+                        // Foreground content
+                        Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
+                            Column(
+                                modifier = Modifier.align(Alignment.CenterStart)
+                            ) {
+                                Text(
+                                    text = "Goal Savings",
+                                    color = Color.White,
+                                    fontSize = 20.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = "Turn your goals into\nsavings!",
+                                    color = Color.White.copy(alpha = 0.9f),
+                                    fontSize = 14.sp,
+                                    lineHeight = 20.sp
+                                )
+                            }
+
+                            Image(
+                                painter = painterResource(R.drawable.vault),
+                                contentDescription = "Goal Savings",
+                                modifier = Modifier
+                                    .size(150.dp)
+                                    .align(Alignment.BottomEnd)
+
                             )
                         }
-
-                        Image(
-                            painter = painterResource(R.drawable.vault),
-                            contentDescription = "Goal Savings",
-                            modifier = Modifier
-                                .size(120.dp)
-                                .align(Alignment.CenterEnd)
-                        )
                     }
                 }
 
@@ -149,15 +163,10 @@ import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
                             index = index
                         )
                     }
-                }
-            }
-        }
-    }
-}
+                }}}}}
 
 
-
-@Composable
+                @Composable
 private fun LearnAboutSavingsCard(
     onClick: () -> Unit,
     index: Int
@@ -184,42 +193,54 @@ private fun LearnAboutSavingsCard(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = cardColors[index]
+            containerColor = Color.Transparent // make card background transparent
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp)
+                .clip(RoundedCornerShape(16.dp)) // clip Box to card shape
         ) {
-            Column(
-                modifier = Modifier.align(Alignment.CenterStart)
-            ) {
-                Text(
-                    text = titles[index],
-                    color = Color.White,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = descriptions[index],
-                    color = Color.White.copy(alpha = 0.9f),
-                    fontSize = 12.sp,
-                    lineHeight = 16.sp
+            // Background image
+            Image(
+                painter = painterResource(R.drawable.bg), // replace with your image
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+
+            // Foreground content
+            Box(modifier = Modifier.fillMaxSize().padding(20.dp)) {
+                Column(
+                    modifier = Modifier.align(Alignment.CenterStart)
+                ) {
+                    Text(
+                        text = titles[index],
+                        color = Color.White,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = descriptions[index],
+                        color = Color.White.copy(alpha = 0.9f),
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp
+                    )
+                }
+
+                Image(
+                    painter = painterResource(R.drawable.bag),
+                    contentDescription = "Learn",
+                    modifier = Modifier
+                        .size(60.dp)
+                        .align(Alignment.CenterEnd)
                 )
             }
-
-            Image(
-                painter = painterResource(R.drawable.bag),
-                contentDescription = "Learn",
-                modifier = Modifier
-                    .size(60.dp)
-                    .align(Alignment.CenterEnd)
-            )
         }
     }
+
 }
 
 @Preview(showBackground = true, showSystemUi = true)

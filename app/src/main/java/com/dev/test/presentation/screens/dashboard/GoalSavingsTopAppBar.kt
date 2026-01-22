@@ -56,7 +56,7 @@ fun GoalSavingsTopBar(userName: String) {
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color(0xFF1B5E4F)
+            containerColor = Color(0xFF00513A)
         )
     )
 }
