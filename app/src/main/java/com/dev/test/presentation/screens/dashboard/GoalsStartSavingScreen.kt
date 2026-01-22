@@ -32,11 +32,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.coop.feature_goals.presentation.GoalSavingsIntent
-import com.coop.feature_goals.presentation.GoalSavingsSampleData
-import com.coop.feature_goals.presentation.GoalSavingsState
+
 import com.dev.test.R
 import com.dev.test.presentation.navigation.AppRoute
+import com.dev.test.presentation.screens.mygoals.GoalSavingsIntent
+import com.dev.test.presentation.screens.mygoals.GoalSavingsSampleData
+import com.dev.test.presentation.screens.mygoals.GoalSavingsState
 import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
 
 @Composable

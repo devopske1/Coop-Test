@@ -34,10 +34,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.coop.feature_goals.presentation.GoalSavingsIntent
 import com.dev.test.R
+import com.dev.test.presentation.components.ErrorContent
+import com.dev.test.presentation.components.LoadingContent
+import com.dev.test.presentation.components.TransactionHistorySection
 import com.dev.test.presentation.navigation.AppRoute
-import com.dev.test.presentation.screens.mygoals.GoalSavingsViewModel
 
 /**
  * Goal Savings Dashboard Screen

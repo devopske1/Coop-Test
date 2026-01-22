@@ -6,11 +6,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.coop.feature_goals.presentation.GoalSavingsDashboardScreen
 import com.dev.test.presentation.screens.creategoals.CreateGoalScreen
 import com.dev.test.presentation.screens.creategoals.CreateGoalViewModel
 import com.dev.test.presentation.screens.dashboard.StartSavingScreen
 import com.dev.test.presentation.screens.deposit.DepositScreen
+import com.dev.test.presentation.screens.mygoals.GoalSavingsDashboardScreen
 import com.dev.test.presentation.screens.withdraw.WithdrawScreen
 
 
