@@ -43,9 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dev.test.presentation.components.SuccessDialog
-import com.dev.test.presentation.dashboard.CreateGoalIntent
-import com.dev.test.presentation.dashboard.CreateGoalNavigation
-import com.dev.test.presentation.dashboard.GoalCategory
+import com.dev.test.presentation.screens.mygoals.GoalCategory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

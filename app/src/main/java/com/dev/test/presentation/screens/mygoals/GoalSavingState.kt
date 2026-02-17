@@ -33,7 +33,7 @@ data class GoalTransaction(
     val id: String,
     val type: TransactionType,
     val amount: Double,
-    val reference: String,
+    val reference: String?,
     val date: String,
     val goalId: String
 )
@@ -125,11 +125,11 @@ sealed class GoalSavingsIntent {
  * Sealed class for navigation events
  */
 sealed class GoalSavingsNavigation {
-    data object NavigateToMyGoalsScreen: GoalSavingsNavigation()
+    data object NavigateToMyGoalsScreen : GoalSavingsNavigation()
     data class NavigateToGoalDetails(val goalId: String) : GoalSavingsNavigation()
     data object NavigateToCreateGoal : GoalSavingsNavigation()
-    data class NavigateToDeposit(val goalId: String) : GoalSavingsNavigation()
-    data class NavigateToWithdraw(val goalId: String) : GoalSavingsNavigation()
+    data class NavigateToDeposit(val goalId: String, val goalName: String) : GoalSavingsNavigation()   // ✅ Added goalName
+    data class NavigateToWithdraw(val goalId: String, val goalName: String) : GoalSavingsNavigation()  // ✅ Added goalName
     data object NavigateToAllTransactions : GoalSavingsNavigation()
     data object NavigateToLearnMore : GoalSavingsNavigation()
 }

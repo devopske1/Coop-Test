@@ -103,4 +103,5 @@ dependencies {
 
     //calendar
     implementation("com.kizitonwose.calendar:compose:2.5.0")
+    implementation("androidx.room:room-runtime:2.6.1")
 }

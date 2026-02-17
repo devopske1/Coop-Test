@@ -156,11 +156,13 @@ private fun TransactionItem(transaction: GoalTransaction) {
                     fontWeight = FontWeight.SemiBold,
                     color = Color.Black
                 )
-                Text(
-                    text = transaction.reference,
-                    fontSize = 12.sp,
-                    color = Color.Gray
-                )
+                transaction.reference?.let {
+                    Text(
+                        text = it,
+                        fontSize = 12.sp,
+                        color = Color.Gray
+                    )
+                }
             }
         }
 

@@ -24,8 +24,6 @@ import com.dev.test.presentation.components.AmountField
 import com.dev.test.presentation.components.SuccessDialog
 import kotlinx.coroutines.flow.collectLatest
 
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WithdrawScreen(
@@ -48,11 +46,16 @@ fun WithdrawScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Withdraw",  color = Color(0xFFFDFDFD),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()) },
+                title = {
+                    Text(
+                        "Withdraw",
+                        color = Color(0xFFFDFDFD),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Default.ArrowBack, null, tint = Color.White)
@@ -77,38 +80,31 @@ fun WithdrawScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
 
+            // ✅ FIXED: Goal Name field now read-only and pre-filled from navigation
             Text("Goal Name", fontSize = 12.sp, color = Color.Gray)
-
             OutlinedTextField(
                 value = state.goalName,
                 onValueChange = {
-                    viewModel.processIntent(
-                        WithdrawIntent.OnPhoneNumberChanged(it)
-                    )
+                    viewModel.processIntent(WithdrawIntent.OnGoalNameChanged(it))
                 },
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("0712345678") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                placeholder = { Text("Goal name") },
+                readOnly = true,   // Pre-filled from the card click, not editable
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF7CB342),
                     unfocusedBorderColor = Color.LightGray,
                     focusedTextColor = Color.Black,
-                    unfocusedTextColor = Color.Black
+                    unfocusedTextColor = Color.Black,
+                    disabledBorderColor = Color(0xFF7CB342),
+                    disabledTextColor = Color.Black
                 ),
                 shape = RoundedCornerShape(8.dp)
             )
 
             Row(modifier = Modifier.wrapContentSize()) {
-                Text(
-                    "Available balance: ",
-                    color = Color.Gray,
-                    fontSize = 12.sp
-                )
-                Text(
-                    "${state.availableBalance} KES",
-                    color = Color(0xFF8BC34A),
-                    fontSize = 12.sp
-                )
+                Text("Available balance: ", color = Color.Gray, fontSize = 12.sp)
+                Text("${state.availableBalance} KES", color = Color(0xFF8BC34A), fontSize = 12.sp)
             }
 
             WithdrawDestinationSelector(
@@ -117,7 +113,6 @@ fun WithdrawScreen(
             )
 
             if (state.destination == WithdrawDestination.MPESA) {
-
                 Column {
                     Text(
                         text = "Phone Number",
@@ -125,13 +120,10 @@ fun WithdrawScreen(
                         color = Color.Gray,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
-
                     OutlinedTextField(
                         value = state.phoneNumber,
                         onValueChange = {
-                            viewModel.processIntent(
-                                WithdrawIntent.OnPhoneNumberChanged(it)
-                            )
+                            viewModel.processIntent(WithdrawIntent.OnPhoneNumberChanged(it))
                         },
                         modifier = Modifier.fillMaxWidth(),
                         placeholder = { Text("0712345678") },
@@ -145,18 +137,16 @@ fun WithdrawScreen(
                         shape = RoundedCornerShape(8.dp)
                     )
                 }
-            }
-            else {
+            } else {
                 var expanded by remember { mutableStateOf(false) }
 
                 Column {
                     Text(
-                        text = "Credit Account",
+                        text = "Debit Account",
                         fontSize = 12.sp,
                         color = Color.Gray,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
-
                     ExposedDropdownMenuBox(
                         expanded = expanded,
                         onExpandedChange = { expanded = !expanded },
@@ -165,9 +155,7 @@ fun WithdrawScreen(
                         OutlinedTextField(
                             value = state.selectedAccount,
                             onValueChange = {},
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .menuAnchor(),
+                            modifier = Modifier.fillMaxWidth().menuAnchor(),
                             placeholder = { Text("Select account") },
                             trailingIcon = {
                                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
@@ -181,7 +169,6 @@ fun WithdrawScreen(
                             ),
                             shape = RoundedCornerShape(8.dp)
                         )
-
                         ExposedDropdownMenu(
                             expanded = expanded,
                             onDismissRequest = { expanded = false },
@@ -192,9 +179,7 @@ fun WithdrawScreen(
                                     text = { Text(account) },
                                     onClick = {
                                         expanded = false
-                                        viewModel.processIntent(
-                                            WithdrawIntent.OnAccountSelected(account)
-                                        )
+                                        viewModel.processIntent(WithdrawIntent.OnAccountSelected(account))
                                     }
                                 )
                             }
@@ -202,8 +187,6 @@ fun WithdrawScreen(
                     }
                 }
             }
-
-
 
             AmountField(
                 "Amount to withdraw",
@@ -230,20 +213,15 @@ fun WithdrawScreen(
 
         if (state.isSuccess) {
             SuccessDialog(
-                title = "100.00 KES",
-                subtitle = "Withdraw Successful",
+                title = "${state.withdrawAmount} KES",   // ✅ Dynamic amount
+                subtitle = "Withdrawal Successful",
                 buttonText = "Go to My Goals",
-                onDismiss = {
-                    viewModel.processIntent(WithdrawIntent.OnSuccessDismissed)
-                },
-                onButtonClick = {
-                    viewModel.processIntent(WithdrawIntent.OnSuccessDismissed)
-                }
+                onDismiss = { viewModel.processIntent(WithdrawIntent.OnSuccessDismissed) },
+                onButtonClick = { viewModel.processIntent(WithdrawIntent.OnSuccessDismissed) }
             )
         }
-        }
     }
-
+}
 
 @Composable
 fun WithdrawDestinationSelector(
@@ -257,18 +235,15 @@ fun WithdrawDestinationSelector(
             color = Color.Gray,
             modifier = Modifier.padding(bottom = 8.dp)
         )
-
         Row(
             horizontalArrangement = Arrangement.spacedBy(24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             DestinationOption(
                 label = "Coop Account",
                 selected = selected == WithdrawDestination.COOP_ACCOUNT,
                 onClick = { onSelect(WithdrawDestination.COOP_ACCOUNT) }
             )
-
             DestinationOption(
                 label = "M-PESA",
                 selected = selected == WithdrawDestination.MPESA,
@@ -310,7 +285,5 @@ private fun DestinationOption(
 fun Preview_WithdrawScreen() {
     MaterialTheme {
         WithdrawScreen(rememberNavController())
-
-
     }
 }

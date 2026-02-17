@@ -1,4 +1,4 @@
-package com.dev.test.presentation.dashboard
+package com.dev.test.presentation.screens.creategoals
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -7,31 +7,32 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.ThumbUp
 
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.dev.test.presentation.screens.mygoals.GoalCategory
 
 /**
  * Enum for goal categories
  */
-enum class GoalCategory(val displayName: String,  val icon: ImageVector) {
-    TRAVELLING("Travelling", Icons.Default.ThumbUp),
-    EDUCATION("Education", Icons.Default.Email),
-    INVESTMENT("Investment", Icons.Default.Email),
-    EMERGENCY("Emergency Fund", Icons.Default.Email),
-    WEDDING("Wedding", Icons.Default.Email),
-    HOUSE("House", Icons.Default.Email),
-    CAR("Car", Icons.Default.Email),
-    GADGETS("Gadgets", Icons.Default.Email),
-    OTHER("Other", Icons.Default.MoreVert)
-}
+//enum class GoalCategory(val displayName: String,  val icon: ImageVector) {
+//    TRAVELLING("Travelling", Icons.Default.ThumbUp),
+//    EDUCATION("Education", Icons.Default.Email),
+//    INVESTMENT("Investment", Icons.Default.Email),
+//    EMERGENCY("Emergency Fund", Icons.Default.Email),
+//    WEDDING("Wedding", Icons.Default.Email),
+//    HOUSE("House", Icons.Default.Email),
+//    CAR("Car", Icons.Default.Email),
+//    GADGETS("Gadgets", Icons.Default.Email),
+//    OTHER("Other", Icons.Default.MoreVert)
+//}
 
 /**
  * Data class for creating a new goal
  */
-data class CreateGoalRequest(
-    val name: String,
-    val category: GoalCategory,
-    val targetAmount: Double,
-    val targetDate: String
-)
+//data class CreateGoalRequest(
+//    val name: String,
+//    val category: GoalCategory,
+//    val targetAmount: Double,
+//    val targetDate: String
+//)
 
 /**
  * UI State for Create Goal screen

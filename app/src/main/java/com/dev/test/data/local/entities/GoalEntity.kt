@@ -2,7 +2,7 @@ package com.dev.test.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.dev.test.presentation.dashboard.GoalCategory
+import com.dev.test.presentation.screens.mygoals.GoalCategory
 
 @Entity(tableName = "goals")
 data class GoalEntity(

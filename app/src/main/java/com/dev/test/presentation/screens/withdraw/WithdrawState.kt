@@ -1,9 +1,9 @@
 package com.dev.test.presentation.screens.withdraw
 
-
 data class WithdrawState(
-    val goalName: String = "Dubai Trip",
-    val availableBalance: Double = 900.00,
+    val goalId: String = "",          // Added to track which goal
+    val goalName: String = "",        // Now empty by default - populated from navigation
+    val availableBalance: Double = 0.00,
 
     val destination: WithdrawDestination = WithdrawDestination.MPESA,
 
@@ -16,13 +16,13 @@ data class WithdrawState(
     val error: String? = null
 ) {
     val isValid: Boolean
-        get() = withdrawAmount.toDoubleOrNull()?.let { it > 0 } == true &&
+        get() = goalName.isNotBlank() &&
+                withdrawAmount.toDoubleOrNull()?.let { it > 0 } == true &&
                 when (destination) {
                     WithdrawDestination.MPESA -> phoneNumber.length >= 10
                     WithdrawDestination.COOP_ACCOUNT -> selectedAccount.isNotBlank()
                 }
 }
-
 
 data class WithdrawRequest(
     val goalName: String,
@@ -32,17 +32,17 @@ data class WithdrawRequest(
     val accountNumber: String? = null
 )
 
-
 enum class WithdrawDestination {
     COOP_ACCOUNT,
     MPESA
 }
+
 sealed class WithdrawIntent {
+    data class OnGoalNameChanged(val name: String) : WithdrawIntent()   // Added
     data class OnDestinationChanged(val destination: WithdrawDestination) : WithdrawIntent()
     data class OnPhoneNumberChanged(val value: String) : WithdrawIntent()
     data class OnAccountSelected(val account: String) : WithdrawIntent()
     data class OnAmountChanged(val value: String) : WithdrawIntent()
-
     data object OnWithdrawClicked : WithdrawIntent()
     data object OnSuccessDismissed : WithdrawIntent()
 }

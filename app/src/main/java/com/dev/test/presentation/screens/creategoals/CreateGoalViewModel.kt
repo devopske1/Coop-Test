@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dev.test.data.local.entities.GoalEntity
 import com.dev.test.data.repository.GoalRepository
-import com.dev.test.presentation.dashboard.CreateGoalIntent
-import com.dev.test.presentation.dashboard.CreateGoalNavigation
-import com.dev.test.presentation.dashboard.CreateGoalState
-import com.dev.test.presentation.dashboard.GoalCategory
+import com.dev.test.presentation.screens.mygoals.GoalCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

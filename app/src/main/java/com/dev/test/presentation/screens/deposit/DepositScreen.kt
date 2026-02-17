@@ -79,11 +79,16 @@ fun DepositScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Deposit", color = Color(0xFFFDFDFD),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()) },
+                title = {
+                    Text(
+                        "Deposit",
+                        color = Color(0xFFFDFDFD),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Default.ArrowBack, null, tint = Color.White)
@@ -108,18 +113,19 @@ fun DepositScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
 
+            // Goal Name Field
             Text("Goal Name", fontSize = 12.sp, color = Color.Gray)
 
             OutlinedTextField(
                 value = state.goalName,
                 onValueChange = {
                     viewModel.processIntent(
-                        DepositIntent.OnPhoneNumberChanged(it)
+                        DepositIntent.OnGoalNameChanged(it)
                     )
                 },
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("0712345678") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                placeholder = { Text("Enter goal name") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF7CB342),
                     unfocusedBorderColor = Color.LightGray,
@@ -129,6 +135,7 @@ fun DepositScreen(
                 shape = RoundedCornerShape(8.dp)
             )
 
+            // Available Balance
             Row(modifier = Modifier.wrapContentSize()) {
                 Text(
                     "Available balance: ",
@@ -142,13 +149,15 @@ fun DepositScreen(
                 )
             }
 
+            // Deposit Destination Selector
             DepositDestinationSelector(
                 state.destination,
                 onSelect = { viewModel.processIntent(DepositIntent.OnDestinationChanged(it)) }
             )
 
+            // Conditional Fields Based on Destination
             if (state.destination == DepositDestination.MPESA) {
-
+                // M-PESA Phone Number Field
                 Column {
                     Text(
                         text = "Phone Number",
@@ -176,8 +185,8 @@ fun DepositScreen(
                         shape = RoundedCornerShape(8.dp)
                     )
                 }
-            }
-            else {
+            } else {
+                // Coop Account Dropdown
                 var expanded by remember { mutableStateOf(false) }
 
                 Column {
@@ -234,8 +243,7 @@ fun DepositScreen(
                 }
             }
 
-
-
+            // Amount Field
             AmountField(
                 "Amount to deposit",
                 state.depositAmount
@@ -245,23 +253,30 @@ fun DepositScreen(
 
             Spacer(Modifier.weight(1f))
 
+            // Deposit Button
             Button(
                 onClick = { viewModel.processIntent(DepositIntent.OnDepositClicked) },
-                modifier = Modifier.fillMaxWidth().height(56.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
                 enabled = state.isValid && !state.isLoading,
                 colors = ButtonDefaults.buttonColors(Color(0xFF7CB342)),
                 shape = RoundedCornerShape(10.dp)
             ) {
                 if (state.isLoading)
-                    CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
+                    CircularProgressIndicator(
+                        color = Color.White,
+                        modifier = Modifier.size(24.dp)
+                    )
                 else
                     Text("Deposit", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
             }
         }
 
+        // Success Dialog
         if (state.isSuccess) {
             SuccessDialog(
-                title = "100.00 KES",
+                title = "${state.depositAmount} KES",
                 subtitle = "Deposit Successful",
                 buttonText = "Go to My Goals",
                 onDismiss = {
@@ -292,7 +307,6 @@ fun DepositDestinationSelector(
             horizontalArrangement = Arrangement.spacedBy(24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             DestinationOption(
                 label = "Coop Account",
                 selected = selected == DepositDestination.COOP_ACCOUNT,
@@ -340,7 +354,5 @@ private fun DestinationOption(
 fun Preview_DepositScreen() {
     MaterialTheme {
         DepositScreen(rememberNavController())
-
-
     }
 }
